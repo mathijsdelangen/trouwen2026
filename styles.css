@@ -133,7 +133,7 @@ a:hover {
 .hero__grid {
   display: grid;
   gap: 2rem;
-  align-items: center;
+  align-items: start;
 }
 
 .eyebrow {
@@ -211,6 +211,7 @@ h2 {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   object-fit: cover;
+  object-position: top center;
   max-height: 520px;
 }
 
