@@ -42,8 +42,18 @@ Plaats jullie foto in `assets/` en wijzig de `src` van de hero-afbeelding in `in
 ### 4) Inhoud aanpassen
 - Locatie: sectie **Locatie**
 - Planning: sectie **Dagplanning**
+- RSVP: sectie **RSVP**
 - FAQ: sectie **Veelgestelde vragen**
 - Later foto's toevoegen: sectie **Foto's**
+
+### 5) RSVP e-mailadres aanpassen
+Open `script.js` en wijzig:
+
+```js
+const RSVP_EMAIL = "jullie@email.nl";
+```
+
+Het RSVP-formulier is volledig statisch: na verzenden opent de bezoeker zijn/haar e-mailapp met een vooringevuld bericht.
 
 ## Tijdlogica
 De trouwdatum staat in `script.js`:

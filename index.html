@@ -140,6 +140,59 @@
           </div>
         </section>
 
+        <section class="section" id="rsvp">
+          <div class="container narrow">
+            <h2>RSVP</h2>
+            <p>
+              Laat ons weten of je erbij bent. Na verzenden opent je e-mailapp met
+              een ingevuld RSVP-bericht.
+            </p>
+
+            <form id="rsvp-form" class="rsvp-form" autocomplete="on">
+              <div class="form-grid">
+                <div>
+                  <label for="rsvp-naam">Naam</label>
+                  <input id="rsvp-naam" name="naam" type="text" required />
+                </div>
+                <div>
+                  <label for="rsvp-email">E-mail</label>
+                  <input id="rsvp-email" name="email" type="email" required />
+                </div>
+                <div>
+                  <label for="rsvp-aantal">Aantal personen</label>
+                  <input
+                    id="rsvp-aantal"
+                    name="aantal"
+                    type="number"
+                    min="1"
+                    max="10"
+                    value="1"
+                    required
+                  />
+                </div>
+                <div>
+                  <label for="rsvp-aanwezig">Ben je aanwezig?</label>
+                  <select id="rsvp-aanwezig" name="aanwezig" required>
+                    <option value="Ja, graag!" selected>Ja, graag!</option>
+                    <option value="Nee, helaas">Nee, helaas</option>
+                  </select>
+                </div>
+              </div>
+
+              <label for="rsvp-opmerking">Dieetwensen / opmerking (optioneel)</label>
+              <textarea
+                id="rsvp-opmerking"
+                name="opmerking"
+                rows="4"
+                placeholder="Bijv. vegetarisch, allergieën, of een kort berichtje"
+              ></textarea>
+
+              <button class="button" type="submit">RSVP versturen</button>
+              <p id="rsvp-feedback" class="feedback" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+        </section>
+
         <section class="section" id="faq">
           <div class="container">
             <h2>Veelgestelde vragen</h2>

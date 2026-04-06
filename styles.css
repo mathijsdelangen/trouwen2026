@@ -261,13 +261,49 @@ summary:focus-visible {
   flex-wrap: wrap;
 }
 
-input[type="password"] {
+input[type="password"],
+input[type="text"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
   flex: 1;
-  min-width: 220px;
   padding: 0.75rem 0.9rem;
   border-radius: 12px;
   border: 1px solid #ccc1b4;
   font: inherit;
+  background: var(--surface);
+  color: var(--text);
+}
+
+input[type="password"] {
+  min-width: 220px;
+}
+
+textarea {
+  width: 100%;
+  resize: vertical;
+}
+
+.rsvp-form {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.rsvp-form label {
+  display: inline-block;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+
+.form-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.rsvp-form .button {
+  justify-self: start;
 }
 
 .feedback {
@@ -380,6 +416,10 @@ summary {
   }
 
   .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .form-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

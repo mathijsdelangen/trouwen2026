@@ -1,6 +1,7 @@
 const WEDDING_DATE = new Date("2026-09-18T14:00:00+02:00");
 const SITE_PASSWORD = "liefde2026"; // Pas dit aan naar jullie eigen wachtwoord.
 const SESSION_KEY = "bruiloft_toegang";
+const RSVP_EMAIL = "jullie@email.nl"; // Pas dit aan naar jullie e-mailadres.
 
 const els = {
   title: document.getElementById("timer-title"),
@@ -19,6 +20,8 @@ const els = {
   passwordInput: document.getElementById("wachtwoord"),
   feedback: document.getElementById("access-feedback"),
   privateContent: document.getElementById("private-content"),
+  rsvpForm: document.getElementById("rsvp-form"),
+  rsvpFeedback: document.getElementById("rsvp-feedback"),
 };
 
 function pad(value) {
@@ -97,6 +100,45 @@ function initAccess() {
   els.accessForm.addEventListener("submit", handleAccess);
 }
 
+function handleRsvp(event) {
+  event.preventDefault();
+
+  const formData = new FormData(event.currentTarget);
+  const naam = String(formData.get("naam") || "").trim();
+  const email = String(formData.get("email") || "").trim();
+  const aantal = String(formData.get("aantal") || "").trim();
+  const aanwezig = String(formData.get("aanwezig") || "").trim();
+  const opmerking = String(formData.get("opmerking") || "").trim();
+
+  const subject = `RSVP bruiloft - ${naam}`;
+  const bodyLines = [
+    "Hallo!",
+    "",
+    "Hierbij onze RSVP:",
+    `Naam: ${naam}`,
+    `E-mail: ${email}`,
+    `Aanwezig: ${aanwezig}`,
+    `Aantal personen: ${aantal}`,
+    `Opmerking/dieetwensen: ${opmerking || "-"}`,
+  ];
+  const body = bodyLines.join("\n");
+
+  const mailto = `mailto:${encodeURIComponent(RSVP_EMAIL)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+  els.rsvpFeedback.textContent = "Je e-mailapp wordt geopend met jullie RSVP.";
+  els.rsvpFeedback.className = "feedback feedback--ok";
+
+  window.location.href = mailto;
+}
+
+function initRsvp() {
+  if (!els.rsvpForm || !els.rsvpFeedback) {
+    return;
+  }
+
+  els.rsvpForm.addEventListener("submit", handleRsvp);
+}
+
 function init() {
   els.timezoneNote.textContent = `Tijdzone trouwdatum: Europe/Amsterdam (${WEDDING_DATE.toLocaleString("nl-NL", {
     timeZone: "Europe/Amsterdam",
@@ -107,6 +149,7 @@ function init() {
   updateTimer();
   setInterval(updateTimer, 1000);
   initAccess();
+  initRsvp();
 }
 
 init();
