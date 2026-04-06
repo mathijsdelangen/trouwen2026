@@ -140,12 +140,6 @@ function initRsvp() {
 }
 
 function init() {
-  els.timezoneNote.textContent = `Tijdzone trouwdatum: Europe/Amsterdam (${WEDDING_DATE.toLocaleString("nl-NL", {
-    timeZone: "Europe/Amsterdam",
-    dateStyle: "full",
-    timeStyle: "short",
-  })})`;
-
   updateTimer();
   setInterval(updateTimer, 1000);
   initAccess();
