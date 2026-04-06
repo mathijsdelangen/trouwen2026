@@ -103,6 +103,20 @@ img {
   display: block;
 }
 
+a {
+  color: var(--primary-strong);
+  font-weight: 600;
+  text-decoration-color: color-mix(in srgb, var(--primary-strong) 55%, transparent);
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1.5px;
+  transition: color 120ms ease, text-decoration-color 120ms ease;
+}
+
+a:hover {
+  color: var(--primary);
+  text-decoration-color: var(--primary);
+}
+
 .container {
   width: min(var(--container), 92vw);
   margin-inline: auto;
@@ -228,6 +242,7 @@ h2 {
 }
 
 .button:focus-visible,
+a:focus-visible,
 input:focus-visible,
 summary:focus-visible {
   outline: 3px solid var(--ring);
