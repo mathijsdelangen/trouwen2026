@@ -39,7 +39,7 @@ function updateTimer() {
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = totalSeconds % 60;
 
-    els.title.textContent = "Nog tot onze bruiloft";
+    els.title.textContent = "Aftellen tot onze bruiloft";
     els.countdownView.classList.remove("hidden");
     els.marriedView.classList.add("hidden");
 
