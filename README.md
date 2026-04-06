@@ -23,6 +23,19 @@ const SITE_PASSWORD = "liefde2026";
 ### 2) Kleuren aanpassen
 Open `styles.css` en wijzig de CSS-variabelen bovenaan onder `:root`.
 
+Of kies direct een van de ingebouwde palettes door in `index.html` het `data-theme` attribuut op `<html>` te wijzigen:
+
+- `terragroen` (default)
+- `salie-klei`
+- `mos-zand`
+- `eucalyptus-terracotta`
+
+Voorbeeld:
+
+```html
+<html lang="nl" data-theme="salie-klei">
+```
+
 ### 3) Foto vervangen
 Plaats jullie foto in `assets/` en wijzig de `src` van de hero-afbeelding in `index.html`.
 

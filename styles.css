@@ -1,20 +1,84 @@
 :root {
   /*
-    THEMAKLEUREN (makkelijk aanpasbaar)
-    Pas alleen onderstaande variabelen aan om het hele kleurenschema te wijzigen.
+    BASISVARIABELEN
+    Kies een palette in index.html via:
+    <html lang="nl" data-theme="terragroen">
+
+    Beschikbare palettes:
+    - terragroen (default)
+    - salie-klei
+    - mos-zand
+    - eucalyptus-terracotta
   */
-  --bg: #fffdf9;
-  --surface: #ffffff;
-  --surface-alt: #f8f4ef;
-  --text: #2d2a26;
-  --muted: #675f57;
-  --primary: #b76e79;
-  --primary-strong: #9a5563;
-  --ring: rgba(183, 110, 121, 0.25);
-  --shadow: 0 16px 35px rgba(66, 50, 35, 0.12);
+  --bg: #f4f1eb;
+  --surface: #fcfbf8;
+  --surface-alt: #e9ebe4;
+  --text: #2f342f;
+  --muted: #5e655e;
+  --primary: #b25b3f;
+  --primary-strong: #8f4630;
+  --ring: rgba(141, 94, 79, 0.28);
+  --shadow: 0 16px 35px rgba(56, 67, 58, 0.14);
+  --bg-glow: #ece7dc;
   --radius: 18px;
   --radius-sm: 12px;
   --container: 1100px;
+}
+
+/* Palette 1: Terracotta + groen/grijs (default) */
+:root[data-theme="terragroen"] {
+  --bg: #f4f1eb;
+  --surface: #fcfbf8;
+  --surface-alt: #e9ebe4;
+  --text: #2f342f;
+  --muted: #5e655e;
+  --primary: #b25b3f;
+  --primary-strong: #8f4630;
+  --ring: rgba(141, 94, 79, 0.28);
+  --shadow: 0 16px 35px rgba(56, 67, 58, 0.14);
+  --bg-glow: #ece7dc;
+}
+
+/* Palette 2: Salie + klei */
+:root[data-theme="salie-klei"] {
+  --bg: #f2f0ea;
+  --surface: #fcfaf6;
+  --surface-alt: #e5e9de;
+  --text: #323731;
+  --muted: #646c63;
+  --primary: #b3684a;
+  --primary-strong: #8f5039;
+  --ring: rgba(129, 151, 126, 0.3);
+  --shadow: 0 16px 35px rgba(69, 84, 70, 0.14);
+  --bg-glow: #e4e0d2;
+}
+
+/* Palette 3: Mos + zand */
+:root[data-theme="mos-zand"] {
+  --bg: #f0eee6;
+  --surface: #fbfaf5;
+  --surface-alt: #e2e5d7;
+  --text: #2e352d;
+  --muted: #5f6659;
+  --primary: #a85b3a;
+  --primary-strong: #84462f;
+  --ring: rgba(104, 124, 96, 0.3);
+  --shadow: 0 16px 35px rgba(61, 78, 55, 0.14);
+  --bg-glow: #e8e2d3;
+}
+
+/* Palette 4: Eucalyptus + terracotta zacht */
+:root[data-theme="eucalyptus-terracotta"] {
+  --bg: #eef1ec;
+  --surface: #fafcf8;
+  --surface-alt: #e2e8df;
+  --text: #2c3430;
+  --muted: #5b6760;
+  --primary: #ba6b4d;
+  --primary-strong: #96533b;
+  --ring: rgba(111, 137, 121, 0.3);
+  --shadow: 0 16px 35px rgba(55, 76, 63, 0.14);
+  --bg-glow: #dde4d7;
 }
 
 * {
@@ -30,7 +94,7 @@ body {
 body {
   font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: var(--text);
-  background: radial-gradient(circle at top left, #fff8f1 0%, var(--bg) 50%);
+  background: radial-gradient(circle at top left, var(--bg-glow) 0%, var(--bg) 55%);
   line-height: 1.6;
 }
 
