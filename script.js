@@ -1,7 +1,7 @@
 const WEDDING_DATE = new Date("2026-09-18T14:00:00+02:00");
-const SITE_PASSWORD = "liefde2026"; // Pas dit aan naar jullie eigen wachtwoord.
+const SITE_PASSWORD = "liefde2026";
 const SESSION_KEY = "bruiloft_toegang";
-const RSVP_EMAIL = "jullie@email.nl"; // Pas dit aan naar jullie e-mailadres.
+const RSVP_EMAIL = "mathijsenchantalgaantrouwen@gmail.com";
 
 const els = {
   title: document.getElementById("timer-title"),
