@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Onze Bruiloft</title>
+    <meta
+      name="description"
+      content="Welkom op onze huwelijkswebsite. Bekijk de afteller tot onze trouwdag."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero" id="boven">
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <p class="eyebrow">Wij gaan trouwen</p>
+          <h1>Welkom op onze bruiloftspagina</h1>
+          <p class="lead">
+            We kijken er enorm naar uit om op <strong>18 september 2026 om 14:00</strong>
+            elkaar het jawoord te geven.
+          </p>
+
+          <section class="countdown-card" aria-live="polite">
+            <h2 id="timer-title">Nog even geduld…</h2>
+
+            <div id="countdown-view" class="time-grid" role="group" aria-label="Afteller">
+              <div class="time-item">
+                <span id="days">0</span>
+                <small>dagen</small>
+              </div>
+              <div class="time-item">
+                <span id="hours">0</span>
+                <small>uren</small>
+              </div>
+              <div class="time-item">
+                <span id="minutes">0</span>
+                <small>minuten</small>
+              </div>
+              <div class="time-item">
+                <span id="seconds">0</span>
+                <small>seconden</small>
+              </div>
+            </div>
+
+            <div id="married-view" class="time-grid hidden" role="group" aria-label="Getrouwd sinds">
+              <div class="time-item">
+                <span id="married-years">0</span>
+                <small>jaar</small>
+              </div>
+              <div class="time-item">
+                <span id="married-days">0</span>
+                <small>dagen</small>
+              </div>
+              <div class="time-item">
+                <span id="married-hours">0</span>
+                <small>uren</small>
+              </div>
+              <div class="time-item">
+                <span id="married-minutes">0</span>
+                <small>minuten</small>
+              </div>
+            </div>
+
+            <p class="countdown-note" id="timezone-note"></p>
+          </section>
+
+          <a class="button button--ghost" href="#toegang">Bekijk details</a>
+        </div>
+
+        <div class="hero__image-wrap">
+          <img
+            class="hero__image"
+            src="assets/ons-placeholder.svg"
+            alt="Foto van ons samen"
+          />
+          <p class="image-note">Deze foto kunnen we later makkelijk vervangen.</p>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section access" id="toegang">
+        <div class="container narrow">
+          <h2>Beschermde informatie</h2>
+          <p>
+            De details hieronder zijn alleen zichtbaar met een wachtwoord voor
+            genodigden.
+          </p>
+
+          <form id="access-form" class="access-form" autocomplete="off">
+            <label for="wachtwoord">Wachtwoord</label>
+            <div class="input-row">
+              <input
+                id="wachtwoord"
+                name="wachtwoord"
+                type="password"
+                placeholder="Voer wachtwoord in"
+                required
+              />
+              <button class="button" type="submit">Ontgrendel</button>
+            </div>
+            <p id="access-feedback" class="feedback" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <div id="private-content" class="hidden">
+        <section class="section" id="locatie">
+          <div class="container">
+            <h2>Locatie</h2>
+            <div class="card-grid">
+              <article class="card">
+                <h3>Ceremonie</h3>
+                <p>Stadhuis Utrecht</p>
+                <p>Korte Minrebroederstraat 2</p>
+                <p>3512 GG Utrecht</p>
+              </article>
+              <article class="card">
+                <h3>Feestlocatie</h3>
+                <p>De Oude Grachtzaal</p>
+                <p>Oudegracht 100</p>
+                <p>3511 AW Utrecht</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section section--alt" id="planning">
+          <div class="container">
+            <h2>Dagplanning</h2>
+            <ol class="timeline">
+              <li><span>13:30</span> Inloop gasten</li>
+              <li><span>14:00</span> Ceremonie</li>
+              <li><span>15:30</span> Taart & toost</li>
+              <li><span>17:30</span> Diner</li>
+              <li><span>20:00</span> Avondfeest</li>
+              <li><span>00:30</span> Einde</li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="section" id="faq">
+          <div class="container">
+            <h2>Veelgestelde vragen</h2>
+            <div class="faq-list">
+              <details>
+                <summary>Wat is de dresscode?</summary>
+                <p>Feestelijk chic. Draag vooral iets waar jij je goed in voelt.</p>
+              </details>
+              <details>
+                <summary>Kan ik parkeren bij de locatie?</summary>
+                <p>
+                  Er is beperkte parkeergelegenheid. We raden OV of carpoolen aan.
+                </p>
+              </details>
+              <details>
+                <summary>Mag ik kinderen meenemen?</summary>
+                <p>
+                  Kinderen zijn welkom tijdens de ceremonie en borrel. Het avondfeest
+                  is voor volwassenen.
+                </p>
+              </details>
+              <details>
+                <summary>Tot wanneer kan ik RSVP'en?</summary>
+                <p>Graag uiterlijk 1 augustus 2026.</p>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <section class="section section--alt" id="foto's">
+          <div class="container">
+            <h2>Foto's</h2>
+            <p>
+              Later voegen we hier een kleine galerij toe met foto's van de dag.
+            </p>
+            <div class="gallery-placeholder">
+              <p>Galerij volgt binnenkort ✨</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <p>Met liefde gemaakt voor onze bruiloft · 18 september 2026</p>
+        <a href="#boven">Terug naar boven</a>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
