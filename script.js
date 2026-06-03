@@ -5,6 +5,9 @@ const RSVP_EMAIL = "mathijsenchantalgaantrouwen@gmail.com";
 
 const els = {
   title: document.getElementById("timer-title"),
+  heroEyebrow: document.getElementById("hero-eyebrow"),
+  heroLead: document.getElementById("hero-lead"),
+  metaDescription: document.getElementById("meta-description"),
   timezoneNote: document.getElementById("timezone-note"),
   countdownView: document.getElementById("countdown-view"),
   marriedView: document.getElementById("married-view"),
@@ -24,8 +27,70 @@ const els = {
   rsvpFeedback: document.getElementById("rsvp-feedback"),
 };
 
+let isMarriedMode = null;
+
 function pad(value) {
   return String(value).padStart(2, "0");
+}
+
+function formatDutchDate(date, includeTime = true) {
+  const options = {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "Europe/Amsterdam",
+  };
+
+  if (includeTime) {
+    options.hour = "2-digit";
+    options.minute = "2-digit";
+    options.hour12 = false;
+  }
+
+  return new Intl.DateTimeFormat("nl-NL", options).format(date);
+}
+
+function updateWeddingCopy(married) {
+  if (isMarriedMode === married) {
+    return;
+  }
+
+  const weddingDateText = married
+    ? formatDutchDate(WEDDING_DATE, false)
+    : formatDutchDate(WEDDING_DATE, true);
+
+  if (!married) {
+    document.title = "Mathijs en Chantal gaan trouwen!";
+    if (els.metaDescription) {
+      els.metaDescription.setAttribute(
+        "content",
+        "Welkom op onze huwelijkswebsite. Bekijk de afteller tot onze trouwdag."
+      );
+    }
+    if (els.heroEyebrow) {
+      els.heroEyebrow.textContent = "Wij gaan trouwen!";
+    }
+    if (els.heroLead) {
+      els.heroLead.innerHTML = `We kijken er enorm naar uit om op <strong>${weddingDateText}</strong> elkaar het jawoord te geven.`;
+    }
+    isMarriedMode = false;
+    return;
+  }
+
+  document.title = "Mathijs en Chantal zijn getrouwd!";
+  if (els.metaDescription) {
+    els.metaDescription.setAttribute(
+      "content",
+      "Welkom op onze huwelijkswebsite. Bekijk hoelang we al getrouwd zijn."
+    );
+  }
+  if (els.heroEyebrow) {
+    els.heroEyebrow.textContent = "Wij zijn getrouwd!";
+  }
+  if (els.heroLead) {
+    els.heroLead.innerHTML = `Wij hebben elkaar op <strong>${weddingDateText}</strong> het jawoord gegeven.`;
+  }
+  isMarriedMode = true;
 }
 
 function updateTimer() {
@@ -33,6 +98,8 @@ function updateTimer() {
   const diffMs = WEDDING_DATE.getTime() - now.getTime();
 
   if (diffMs > 0) {
+    updateWeddingCopy(false);
+
     const totalSeconds = Math.floor(diffMs / 1000);
     const days = Math.floor(totalSeconds / 86400);
     const hours = Math.floor((totalSeconds % 86400) / 3600);
@@ -49,6 +116,8 @@ function updateTimer() {
     els.seconds.textContent = pad(seconds);
     return;
   }
+
+  updateWeddingCopy(true);
 
   const marriedMs = now.getTime() - WEDDING_DATE.getTime();
   const marriedTotalMinutes = Math.floor(marriedMs / (1000 * 60));
