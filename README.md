@@ -11,12 +11,16 @@ Dit is een volledig statische website (HTML/CSS/JavaScript), dus je kunt dit hos
 
 ## Snelle aanpassingen
 
-### 1) Wachtwoord aanpassen
+### 1) Wachtwoorden aanpassen
 Open `script.js` en wijzig:
 
 ```js
-const SITE_PASSWORD = "liefde2026";
+const DAY_GUEST_PASSWORD = "liefde2026";
+const EVENING_GUEST_PASSWORD = "feest2026";
 ```
+
+- `DAY_GUEST_PASSWORD`: toont de volledige dagplanning.
+- `EVENING_GUEST_PASSWORD`: toont alleen de avondplanning (vanaf 20:00).
 
 > Let op: dit is een simpele client-side bescherming (voldoende tegen toevallige bezoekers, niet tegen technische inspectie van broncode).
 

@@ -1,7 +1,26 @@
 const WEDDING_DATE = new Date("2026-09-18T14:00:00+02:00");
-const SITE_PASSWORD = "liefde2026";
+const DAY_GUEST_PASSWORD = "liefde2026";
+const EVENING_GUEST_PASSWORD = "feest2026";
 const SESSION_KEY = "bruiloft_toegang";
 const RSVP_EMAIL = "mathijsenchantalgaantrouwen@gmail.com";
+
+const ACCESS_LEVEL_DAY = "dag";
+const ACCESS_LEVEL_EVENING = "avond";
+
+const DAY_TIMELINE_ITEMS = [
+  { time: "13:30", label: "Inloop gasten" },
+  { time: "14:00", label: "Ceremonie" },
+  { time: "15:00", label: "Toost & borrel" },
+  { time: "17:00", label: "Diner" },
+  { time: "20:00", label: "Feest" },
+  { time: "01:00", label: "Einde" },
+];
+
+const EVENING_TIMELINE_ITEMS = [
+  { time: "20:00", label: "Aanwezig feest" },
+  { time: "20:30", label: "Start feest" },
+  { time: "01:00", label: "Einde" },
+];
 
 const els = {
   title: document.getElementById("timer-title"),
@@ -23,6 +42,9 @@ const els = {
   passwordInput: document.getElementById("wachtwoord"),
   feedback: document.getElementById("access-feedback"),
   privateContent: document.getElementById("private-content"),
+  planningTitle: document.getElementById("planning-title"),
+  planningTimeline: document.getElementById("planning-timeline"),
+  planningNote: document.getElementById("planning-note"),
   rsvpForm: document.getElementById("rsvp-form"),
   rsvpFeedback: document.getElementById("rsvp-feedback"),
 };
@@ -139,7 +161,24 @@ function updateTimer() {
   els.marriedMinutes.textContent = pad(minutesLeft);
 }
 
-function showPrivateContent() {
+function setPlanningForAccessLevel(accessLevel) {
+  if (!els.planningTimeline || !els.planningTitle || !els.planningNote) {
+    return;
+  }
+
+  const isEveningGuest = accessLevel === ACCESS_LEVEL_EVENING;
+  const timelineItems = isEveningGuest ? EVENING_TIMELINE_ITEMS : DAY_TIMELINE_ITEMS;
+
+  els.planningTitle.textContent = "Programma";
+  els.planningNote.textContent = "";
+
+  els.planningTimeline.innerHTML = timelineItems
+    .map((item) => `<li><span>${item.time}</span> ${item.label}</li>`)
+    .join("");
+}
+
+function showPrivateContent(accessLevel) {
+  setPlanningForAccessLevel(accessLevel);
   els.privateContent.classList.remove("hidden");
   els.feedback.textContent = "Toegang toegestaan. Veel plezier met lezen!";
   els.feedback.className = "feedback feedback--ok";
@@ -149,9 +188,17 @@ function handleAccess(event) {
   event.preventDefault();
   const value = els.passwordInput.value.trim();
 
-  if (value === SITE_PASSWORD) {
-    sessionStorage.setItem(SESSION_KEY, "ok");
-    showPrivateContent();
+  let accessLevel = null;
+
+  if (value === DAY_GUEST_PASSWORD) {
+    accessLevel = ACCESS_LEVEL_DAY;
+  } else if (value === EVENING_GUEST_PASSWORD) {
+    accessLevel = ACCESS_LEVEL_EVENING;
+  }
+
+  if (accessLevel) {
+    sessionStorage.setItem(SESSION_KEY, accessLevel);
+    showPrivateContent(accessLevel);
     els.passwordInput.value = "";
     return;
   }
@@ -161,9 +208,12 @@ function handleAccess(event) {
 }
 
 function initAccess() {
-  const isUnlocked = sessionStorage.getItem(SESSION_KEY) === "ok";
-  if (isUnlocked) {
-    showPrivateContent();
+  const accessLevel = sessionStorage.getItem(SESSION_KEY);
+  const hasKnownAccessLevel =
+    accessLevel === ACCESS_LEVEL_DAY || accessLevel === ACCESS_LEVEL_EVENING;
+
+  if (hasKnownAccessLevel) {
+    showPrivateContent(accessLevel);
   }
 
   els.accessForm.addEventListener("submit", handleAccess);
