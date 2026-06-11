@@ -203,7 +203,7 @@ function handleAccess(event) {
     return;
   }
 
-  els.feedback.textContent = "Onjuist wachtwoord. Probeer opnieuw.";
+  els.feedback.textContent = "Onjuiste code. Probeer opnieuw.";
   els.feedback.className = "feedback feedback--error";
 }
 
