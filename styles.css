@@ -364,21 +364,35 @@ figure {
 }
 
 .gallery__item {
+  position: relative;
   break-inside: avoid;
   margin: 0 0 clamp(0.55rem, 1.2vw, 1rem);
-  overflow: hidden;
+  overflow: visible;
   border-radius: 2px;
   background: var(--surface-alt);
+}
+
+.gallery__item:hover,
+.gallery__item:focus-within {
+  z-index: 1;
 }
 
 .gallery__item img {
   height: auto;
   object-fit: contain;
+  border-radius: 2px;
+  transform-origin: center;
+  transition: transform 220ms ease;
 }
 
 .gallery__link {
   display: block;
-  cursor: zoom-in;
+  cursor: pointer;
+}
+
+.gallery__link:hover img,
+.gallery__link:focus-visible img {
+  transform: scale(1.035);
 }
 
 .photo-viewer {
