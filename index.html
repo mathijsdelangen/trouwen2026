@@ -1,281 +1,167 @@
 <!doctype html>
-<html lang="nl" data-theme="eucalyptus-terracotta">
+<html lang="nl" data-theme="eucalyptus-terracotta" data-layout="mozaiek">
   <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3WJNWWCPTX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-3WJNWWCPTX');
-    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mathijs en Chantal gaan trouwen!</title>
     <meta
-      id="meta-description"
       name="description"
-      content="Welkom op onze huwelijkswebsite. Bekijk de afteller tot onze trouwdag."
+      content="Een verzameling herinneringen aan de trouwdag van Mathijs en Chantal."
     />
+    <meta name="theme-color" content="#f3f2ec" />
+    <title>Mathijs &amp; Chantal — Ons verhaal</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="hero" id="boven">
-      <div class="container hero__grid">
+      <nav class="topbar container" aria-label="Hoofdnavigatie">
+        <a class="wordmark" href="#boven" aria-label="Mathijs en Chantal, naar boven">
+          M <span>&amp;</span> C
+        </a>
+        <a class="topbar__link" href="#herinneringen">Herinneringen</a>
+      </nav>
+
+      <div class="hero__grid container">
         <div class="hero__content">
-          <p class="eyebrow" id="hero-eyebrow">Wij gaan trouwen!</p>
-          <h1>Welkom op onze bruiloftspagina</h1>
-          <p class="lead" id="hero-lead">
-            We kijken er enorm naar uit om op <strong>18 september 2026 om 14:00</strong>
-            elkaar het jawoord te geven.
-          </p>
+          <p class="eyebrow">18 september 2026 · Kasteel Tongelaar</p>
+          <h1>Mathijs <span>&amp;</span><br />Chantal</h1>
+          <p class="lead">Een dag vol liefde, om steeds opnieuw te beleven.</p>
 
-          <section class="countdown-card" aria-live="polite">
-            <h2 id="timer-title">Nog even geduld…</h2>
-
-            <div id="countdown-view" class="time-grid" role="group" aria-label="Afteller">
-              <div class="time-item">
-                <span id="days">0</span>
-                <small>dagen</small>
+          <section class="anniversary" aria-label="Hoelang we getrouwd zijn">
+            <p class="anniversary__label">
+              Getrouwd sinds <time datetime="2026-09-18T14:00:00+02:00">18 september 2026</time>
+            </p>
+            <dl class="anniversary__duration">
+              <div class="anniversary__unit" id="year-unit" hidden>
+                <dt>jaar</dt>
+                <dd id="elapsed-years">0</dd>
               </div>
-              <div class="time-item">
-                <span id="hours">0</span>
-                <small>uren</small>
+              <div class="anniversary__unit">
+                <dt id="days-label">dagen</dt>
+                <dd id="elapsed-days">0</dd>
               </div>
-              <div class="time-item">
-                <span id="minutes">0</span>
-                <small>minuten</small>
+              <div class="anniversary__unit">
+                <dt>uur</dt>
+                <dd id="elapsed-hours">0</dd>
               </div>
-              <div class="time-item">
-                <span id="seconds">0</span>
-                <small>seconden</small>
+              <div class="anniversary__unit">
+                <dt id="minutes-label">minuten</dt>
+                <dd id="elapsed-minutes">0</dd>
               </div>
-            </div>
-
-            <div id="married-view" class="time-grid hidden" role="group" aria-label="Getrouwd sinds">
-              <div class="time-item">
-                <span id="married-years">0</span>
-                <small>jaar</small>
-              </div>
-              <div class="time-item">
-                <span id="married-days">0</span>
-                <small>dagen</small>
-              </div>
-              <div class="time-item">
-                <span id="married-hours">0</span>
-                <small>uren</small>
-              </div>
-              <div class="time-item">
-                <span id="married-minutes">0</span>
-                <small>minuten</small>
-              </div>
-            </div>
-
-            <p class="countdown-note" id="timezone-note"></p>
+            </dl>
           </section>
-
-          <a class="button button--ghost" href="#toegang">Bekijk details</a>
         </div>
 
-        <div class="hero__image-wrap">
+        <figure class="hero__photo">
           <img
-            class="hero__image"
-            src="assets/mathijsenchantal.jpg"
-            alt="Foto van ons samen"
+            src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0007.jpg"
+            alt="Mathijs en Chantal lopen lachend hand in hand na de ceremonie"
+            fetchpriority="high"
           />
-        </div>
+          <figcaption>De mooiste dag, vastgelegd om te bewaren.</figcaption>
+        </figure>
       </div>
     </header>
 
     <main>
-      <section class="section access" id="toegang">
-        <div class="container narrow">
-          <h2>Extra informatie</h2>
-          <p>
-            De details hieronder zijn alleen zichtbaar met een code voor genodigden.
-          </p>
+      <section class="style-panel container" aria-label="Pas de vormgeving aan">
+        <fieldset class="style-control">
+          <legend>Kleuren</legend>
+          <div class="style-options">
+            <button class="style-choice" type="button" data-theme-choice="eucalyptus-terracotta" aria-pressed="true">
+              Eucalyptus
+            </button>
+            <button class="style-choice" type="button" data-theme-choice="zand-terracotta" aria-pressed="false">
+              Zand
+            </button>
+            <button class="style-choice" type="button" data-theme-choice="roze-bordeaux" aria-pressed="false">
+              Rozenhout
+            </button>
+            <button class="style-choice" type="button" data-theme-choice="nacht" aria-pressed="false">
+              Avond
+            </button>
+          </div>
+        </fieldset>
 
-          <form id="access-form" class="access-form" autocomplete="off">
-            <div class="input-row">
-              <input
-                id="wachtwoord"
-                name="wachtwoord"
-                type="password"
-                placeholder="Voer code in"
-                aria-label="Code"
-                required
-              />
-              <button class="button" type="submit">Ontgrendel</button>
+        <fieldset class="style-control">
+          <legend>Foto-indeling</legend>
+          <div class="style-options">
+            <button class="style-choice" type="button" data-layout-choice="mozaiek" aria-pressed="true">
+              Mozaïek
+            </button>
+            <button class="style-choice" type="button" data-layout-choice="raster" aria-pressed="false">
+              Raster
+            </button>
+            <button class="style-choice" type="button" data-layout-choice="ruim" aria-pressed="false">
+              Ruim
+            </button>
+          </div>
+        </fieldset>
+        <p class="visually-hidden" id="style-status" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="section gallery-section" id="herinneringen">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Een dag om in te lijsten</p>
+              <h2>Herinneringen</h2>
             </div>
-            <p id="access-feedback" class="feedback" role="status" aria-live="polite"></p>
-          </form>
+            <p class="photographer-credit">
+              Foto's door
+              <a href="https://www.momentstofocuson.com/" target="_blank" rel="noopener noreferrer">MOMENTS To Focus On</a>
+              <span aria-hidden="true">·</span>
+              <a href="https://www.instagram.com/momentstofocuson/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            </p>
+          </div>
+
+          <div class="gallery" aria-label="Foto's van onze trouwdag">
+            <figure class="gallery__item"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0001.jpg" alt="Chantal wordt klaargemaakt voor de trouwdag" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery__item"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0002.jpg" alt="Chantal kijkt in de spiegel bij het raam" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery__item"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0003.jpg" alt="Een emotioneel moment met familie voor de ceremonie" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery__item"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0004.jpg" alt="Mathijs wacht Chantal op bij de kasteelpoort" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery__item"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0005.jpg" alt="Portret van Chantal in haar trouwjurk" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery__item"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0006.jpg" alt="Chantal in de boog van Kasteel Tongelaar" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery__item"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0007.jpg" alt="Mathijs en Chantal lopen lachend hand in hand" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery__item"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0008.jpg" alt="Mathijs en Chantal bij Kasteel Tongelaar" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery__item"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0009.jpg" alt="Mathijs en Chantal samen onder de grote boom" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery__item"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0010.jpg" alt="Mathijs en Chantal zitten samen op een bankje in de tuin" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery__item"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0011.jpg" alt="Het bruidspaar geniet samen in de kasteeltuin" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery__item"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0012.jpg" alt="Een ontroerend moment tussen Mathijs en Chantal" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery__item"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0013.jpg" alt="Mathijs en Chantal lachen samen na de ceremonie" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery__item"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0014.jpg" alt="Het bruidspaar loopt door een feestelijke erehaag" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery__item"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0015.jpg" alt="Groepsfoto met familie en vrienden" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery__item"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0016.jpg" alt="Mathijs en Chantal met hun familie" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery__item"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0017.jpg" alt="Het bruidspaar met een groep vrienden" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery__item"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0018.jpg" alt="Familie en vrienden vieren samen met het bruidspaar" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery__item"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0019.jpg" alt="Een liefdevolle omhelzing tussen familieleden" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery__item"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0020.jpg" alt="Mathijs en Chantal tijdens het diner" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery__item"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0021.jpg" alt="Chantal wordt opgetild tijdens het feest" loading="lazy" decoding="async" /></figure>
+            <figure class="gallery__item"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0022.jpg" alt="Mathijs maakt zich klaar voor de ceremonie" loading="lazy" decoding="async" /></figure>
+          </div>
         </div>
       </section>
 
-      <div id="private-content" class="hidden">
-        <section class="section" id="locatie">
-          <div class="container">
-            <h2>Locatie</h2>
-            <div class="card-grid">
-              <article class="card location-card">
-                <div class="location-card__content">
-                  <div>
-                    <h3>Ceremonie & feestlocatie</h3>
-                    <p>Kasteel Tongelaar</p>
-                    <p>Hoogedijk</p>
-                    <p>5451 HS Mill</p>
-                    <p>
-                      <a
-                        href="https://www.google.com/maps/search/?api=1&query=Kasteel+Tongelaar+Hoogedijk+5451+HS+Mill"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Bekijk op Google Maps
-                      </a>
-                    </p>
-                  </div>
-                  <div class="location-photo-placeholder" aria-label="Foto van locatie">
-                    <img
-                      class="location-photo"
-                      src="assets/kasteel-tongelaar.jpg"
-                      alt="Kasteel Tongelaar"
-                    />
-                  </div>
-                </div>
-              </article>
+      <section class="section film-section" id="trouwfilm">
+        <div class="container">
+          <div class="section-heading section-heading--center">
+            <div>
+              <p class="eyebrow">Binnenkort</p>
+              <h2>Onze trouwfilm</h2>
             </div>
           </div>
-        </section>
-
-        <section class="section section--alt" id="planning">
-          <div class="container">
-            <h2 id="planning-title">Dagplanning</h2>
-            <p id="planning-note">Dit is de volledige dagplanning voor daggasten.</p>
-            <ol id="planning-timeline" class="timeline">
-              <li><span>13:30</span> Inloop gasten</li>
-              <li><span>14:00</span> Ceremonie</li>
-              <li><span>15:00</span> Toost & borrel</li>
-              <li><span>17:00</span> Diner</li>
-              <li><span>20:00</span> Feest</li>
-              <li><span>01:00</span> Einde</li>
-            </ol>
+          <div class="film-placeholder" role="img" aria-label="Placeholder voor de trouwfilm, die later wordt toegevoegd">
+            <span class="film-placeholder__play" aria-hidden="true"></span>
+            <p>De film van onze dag volgt binnenkort</p>
           </div>
-        </section>
-
-        <section class="section" id="rsvp">
-          <div class="container narrow">
-            <h2>RSVP</h2>
-            <p>
-              Laat ons weten of je erbij bent. Na verzenden opent je e-mailapp met
-              een ingevuld RSVP-bericht.
-            </p>
-
-            <form id="rsvp-form" class="rsvp-form" autocomplete="on">
-              <div class="form-grid">
-                <div>
-                  <label for="rsvp-naam">Naam</label>
-                  <input id="rsvp-naam" name="naam" type="text" required />
-                </div>
-                <div>
-                  <label for="rsvp-email">E-mail</label>
-                  <input id="rsvp-email" name="email" type="email" required />
-                </div>
-                <div>
-                  <label for="rsvp-aantal">Aantal personen</label>
-                  <input
-                    id="rsvp-aantal"
-                    name="aantal"
-                    type="number"
-                    min="1"
-                    max="10"
-                    value="1"
-                    required
-                  />
-                </div>
-                <div>
-                  <label for="rsvp-aanwezig">Ben je aanwezig?</label>
-                  <select id="rsvp-aanwezig" name="aanwezig" required>
-                    <option value="Ja, graag!" selected>Ja, graag!</option>
-                    <option value="Nee, helaas">Nee, helaas</option>
-                  </select>
-                </div>
-              </div>
-
-              <label for="rsvp-opmerking">Dieetwensen / opmerking (optioneel)</label>
-              <textarea
-                id="rsvp-opmerking"
-                name="opmerking"
-                rows="4"
-                placeholder="Bijv. vegetarisch, allergieën, of een kort berichtje"
-              ></textarea>
-
-              <button class="button" type="submit">RSVP versturen</button>
-              <p id="rsvp-feedback" class="feedback" role="status" aria-live="polite"></p>
-            </form>
-          </div>
-        </section>
-
-        <section class="section" id="faq">
-          <div class="container">
-            <h2>Veelgestelde vragen</h2>
-            <div class="faq-list">
-              <details>
-                <summary>Wat is de dresscode?</summary>
-                <p>De dresscode is <strong>wedding chic</strong>. Denk aan een nette jurk, rok of jumpsuit, of aan een pantalon met blouse, overhemd of colbert. Draag vooral iets feestelijks waarin je je comfortabel voelt.</p>
-                <p>We vragen je vriendelijk om geen jeans of spijkerbroek te dragen.</p>
-              </details>
-              <details>
-                <summary>Kan ik parkeren bij de locatie?</summary>
-                <p>
-                  Alle gasten gebruiken het grote parkeerterrein vóór de brug van het kasteel. Vanaf daar is het nog ongeveer 6 à 7 minuten lopen.
-                  <p><a
-                    href="https://maps.app.goo.gl/MMYvm8fGDRGHFDFN9"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    De parkeerlocatie van Kasteel Tongelaar (opent in Maps)
-                  </a></p>
-                </p>
-                <p>
-                  Voor mindervaliden is er beperkte parkeergelegenheid direct bij het kasteel. Zij kunnen bij de brug het "verboden in te rijden" bord negeren en over de brug doorrijden tot aan de hoofdingang.
-                </p>
-              </details>
-              <details>
-                <summary>Tot wanneer kan ik RSVP'en?</summary>
-                <p>Graag uiterlijk 15 augustus 2026.</p>
-              </details>
-              <details>
-                <summary>Mag ik een speech geven? Of een stukje uitvoeren?</summary>
-                <p>Dit zou heel leuk zijn, maar we willen het graag goed plannen.
-                  Neem hiervoor contact op met onze ceremoniemeester Gabriëlla via <a href="mailto:mathijsenchantalgaantrouwen@gmail.com">mathijsenchantalgaantrouwen@gmail.com</a>.</p>
-              </details>
-              <details>
-                <summary>Met wie neem ik contact op bij andere vragen?</summary>
-                <p>Met onze ceremoniemeester Gabriëlla via <a href="mailto:mathijsenchantalgaantrouwen@gmail.com">mathijsenchantalgaantrouwen@gmail.com</a>.</p>
-              </details>
-            </div>
-          </div>
-        </section>
-
-        <section class="section section--alt" id="foto's">
-          <div class="container">
-            <h2>Foto's</h2>
-            <p>
-              Later voegen we hier een kleine galerij toe met foto's van de dag.
-            </p>
-            <div class="gallery-placeholder">
-              <p>Galerij volgt binnenkort ✨</p>
-            </div>
-          </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </main>
 
     <footer class="footer">
       <div class="container footer__inner">
-        <p>Met liefde gemaakt voor onze bruiloft · 18 september 2026</p>
-        <a href="#boven">Terug naar boven</a>
+        <a class="wordmark" href="#boven">M <span>&amp;</span> C</a>
+        <p>Met liefde, Mathijs &amp; Chantal · 18 september 2026</p>
+        <a href="#boven">Naar boven ↑</a>
       </div>
     </footer>
 

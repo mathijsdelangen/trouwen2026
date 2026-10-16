@@ -1,73 +1,23 @@
-# Trouwwebsite (one-pager)
+# Mathijs & Chantal — Ons verhaal
 
-Dit is een volledig statische website (HTML/CSS/JavaScript), dus je kunt dit hosten op bijna elke host zonder speciale serversoftware.
+Een statische herinneringspagina met de trouwfoto's, een plek voor de trouwfilm en een subtiele teller sinds de trouwdag. De pagina gebruikt alleen HTML, CSS en JavaScript en kan op iedere statische hosting worden gepubliceerd.
 
-## Bestanden
+## Inhoud aanpassen
 
-- `index.html` – structuur en inhoud
-- `styles.css` – opmaak + responsive design
-- `script.js` – countdown + toegangscontrole
-- `assets/ons-placeholder.svg` – tijdelijke foto
+- De trouwdatum en het moment waarop de teller begint staan bovenaan in `script.js` als `WEDDING_DATE`.
+- Voeg foto's toe aan `assets/fotos_moments/` en pas de galerij in `index.html` aan.
+- Vervang het filmvlak in `index.html` later door een video-element of een ingesloten video.
+- De fotograafvermelding en Instagram-link staan direct bij de fotogalerij.
 
-## Snelle aanpassingen
+## Vormgeving
 
-### 1) Wachtwoorden aanpassen
-Open `script.js` en wijzig:
+Bezoekers kunnen de kleuren en foto-indeling op de pagina aanpassen:
 
-```js
-const DAY_GUEST_PASSWORD = "liefde2026";
-const EVENING_GUEST_PASSWORD = "feest2026";
-```
+- Kleuren: eucalyptus, zand, rozenhout en avond.
+- Foto-indeling: mozaïek, raster en ruim.
 
-- `DAY_GUEST_PASSWORD`: toont de volledige dagplanning.
-- `EVENING_GUEST_PASSWORD`: toont alleen de avondplanning (vanaf 20:00).
-
-> Let op: dit is een simpele client-side bescherming (voldoende tegen toevallige bezoekers, niet tegen technische inspectie van broncode).
-
-### 2) Kleuren aanpassen
-Open `styles.css` en wijzig de CSS-variabelen bovenaan onder `:root`.
-
-Of kies direct een van de ingebouwde palettes door in `index.html` het `data-theme` attribuut op `<html>` te wijzigen:
-
-- `terragroen` (default)
-- `salie-klei`
-- `mos-zand`
-- `eucalyptus-terracotta`
-
-Voorbeeld:
-
-```html
-<html lang="nl" data-theme="salie-klei">
-```
-
-### 3) Foto vervangen
-Plaats jullie foto in `assets/` en wijzig de `src` van de hero-afbeelding in `index.html`.
-
-### 4) Inhoud aanpassen
-- Locatie: sectie **Locatie**
-- Planning: sectie **Dagplanning**
-- RSVP: sectie **RSVP**
-- FAQ: sectie **Veelgestelde vragen**
-- Later foto's toevoegen: sectie **Foto's**
-
-### 5) RSVP e-mailadres aanpassen
-Open `script.js` en wijzig:
-
-```js
-const RSVP_EMAIL = "jullie@email.nl";
-```
-
-Het RSVP-formulier is volledig statisch: na verzenden opent de bezoeker zijn/haar e-mailapp met een vooringevuld bericht.
-
-## Tijdlogica
-De trouwdatum staat in `script.js`:
-
-```js
-const WEDDING_DATE = new Date("2026-09-18T14:00:00+02:00");
-```
-
-Voor de trouwdatum: countdown.
-Na de trouwdatum: duur van het huwelijk sinds dat moment.
+De standaardkeuzes staan als `data-theme` en `data-layout` op het `<html>`-element in `index.html`. Alle beschikbare kleuren en indelingen zijn uitgewerkt in `styles.css`.
 
 ## Publiceren
-Upload alle bestanden en mappen één-op-één naar je webhosting (of GitHub Pages / Netlify / Vercel static hosting).
+
+Upload de bestanden en de map `assets/` naar een statische host, zoals GitHub Pages, Netlify of Vercel.
