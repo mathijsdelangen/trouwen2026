@@ -238,11 +238,8 @@ figure {
 }
 
 .hero__photo img {
-  aspect-ratio: 1.3;
   border-radius: 2px 90px 2px 2px;
   box-shadow: var(--shadow);
-  object-fit: cover;
-  object-position: center 42%;
 }
 
 .hero__photo figcaption {
@@ -361,46 +358,30 @@ figure {
 }
 
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-auto-flow: dense;
-  gap: clamp(0.55rem, 1.2vw, 1rem);
+  columns: 4;
+  column-gap: clamp(0.55rem, 1.2vw, 1rem);
 }
 
 .gallery__item {
-  height: clamp(190px, 23vw, 320px);
-  margin: 0;
+  break-inside: avoid;
+  margin: 0 0 clamp(0.55rem, 1.2vw, 1rem);
   overflow: hidden;
+  border-radius: 2px;
   background: var(--surface-alt);
 }
 
 .gallery__item img {
-  height: 100%;
-  object-fit: cover;
-  transition: transform 400ms ease;
+  height: auto;
+  object-fit: contain;
 }
 
-.gallery__item:hover img {
-  transform: scale(1.035);
-}
-
-:root[data-layout="mozaiek"] .gallery__item:nth-child(7n + 1),
-:root[data-layout="mozaiek"] .gallery__item:nth-child(7n + 4) {
-  grid-column: span 2;
-  height: clamp(220px, 31vw, 410px);
-}
-
-:root[data-layout="raster"] .gallery__item {
-  height: clamp(170px, 21vw, 270px);
+:root[data-layout="raster"] .gallery {
+  columns: 3;
 }
 
 :root[data-layout="ruim"] .gallery {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(1rem, 2vw, 1.75rem);
-}
-
-:root[data-layout="ruim"] .gallery__item {
-  height: clamp(260px, 40vw, 510px);
+  columns: 2;
+  column-gap: clamp(1rem, 2vw, 1.75rem);
 }
 
 .film-section {
@@ -488,22 +469,8 @@ figure {
     max-width: none;
   }
 
-  .hero__photo img {
-    aspect-ratio: 1.25;
-  }
-
   .gallery {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .gallery__item,
-  :root[data-layout="raster"] .gallery__item {
-    height: clamp(180px, 42vw, 310px);
-  }
-
-  :root[data-layout="mozaiek"] .gallery__item:nth-child(7n + 1),
-  :root[data-layout="mozaiek"] .gallery__item:nth-child(7n + 4) {
-    height: clamp(210px, 55vw, 370px);
+    columns: 2;
   }
 
   .style-panel {
@@ -534,11 +501,7 @@ figure {
   }
 
   :root[data-layout="ruim"] .gallery {
-    grid-template-columns: 1fr;
-  }
-
-  :root[data-layout="ruim"] .gallery__item {
-    height: clamp(230px, 75vw, 400px);
+    columns: 1;
   }
 
   .film-placeholder {

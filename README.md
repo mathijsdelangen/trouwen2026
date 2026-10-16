@@ -16,6 +16,8 @@ Bezoekers kunnen de kleuren en foto-indeling op de pagina aanpassen:
 - Kleuren: eucalyptus, zand, rozenhout en avond.
 - Foto-indeling: mozaïek, raster en ruim.
 
+Elke indeling behoudt de originele beeldverhouding van de foto's, zodat personen en details niet worden afgesneden.
+
 De standaardkeuzes staan als `data-theme` en `data-layout` op het `<html>`-element in `index.html`. Alle beschikbare kleuren en indelingen zijn uitgewerkt in `styles.css`.
 
 ## Publiceren
