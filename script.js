@@ -68,6 +68,84 @@ function initStyleChoices() {
   });
 }
 
+function initPhotoViewer() {
+  const gallery = document.querySelector(".gallery");
+  const photoViewer = document.getElementById("photo-viewer");
+  const viewerImage = document.getElementById("photo-viewer-image");
+  const closeButton = document.getElementById("photo-viewer-close");
+  const previousButton = document.getElementById("photo-viewer-previous");
+  const nextButton = document.getElementById("photo-viewer-next");
+  const photoLinks = Array.from(gallery.querySelectorAll(".gallery__link"));
+  let currentPhotoIndex = 0;
+
+  function showPhoto(index) {
+    currentPhotoIndex = (index + photoLinks.length) % photoLinks.length;
+    const link = photoLinks[currentPhotoIndex];
+    const image = link.querySelector("img");
+
+    viewerImage.width = Number(image.getAttribute("width"));
+    viewerImage.height = Number(image.getAttribute("height"));
+    viewerImage.src = link.href;
+    viewerImage.alt = image.alt;
+    photoViewer.setAttribute(
+      "aria-label",
+      `Foto ${currentPhotoIndex + 1} van ${photoLinks.length}: ${image.alt}`
+    );
+  }
+
+  gallery.addEventListener("click", (event) => {
+    if (!(event.target instanceof Element)) {
+      return;
+    }
+
+    const link = event.target.closest(".gallery__link");
+    if (!(link instanceof HTMLAnchorElement)) {
+      return;
+    }
+
+    const index = photoLinks.indexOf(link);
+    if (index === -1) {
+      return;
+    }
+
+    event.preventDefault();
+    showPhoto(index);
+    photoViewer.showModal();
+  });
+
+  previousButton.addEventListener("click", () => {
+    showPhoto(currentPhotoIndex - 1);
+  });
+
+  nextButton.addEventListener("click", () => {
+    showPhoto(currentPhotoIndex + 1);
+  });
+
+  closeButton.addEventListener("click", () => {
+    photoViewer.close();
+  });
+
+  photoViewer.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      photoViewer.close();
+    } else if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      showPhoto(currentPhotoIndex - 1);
+    } else if (event.key === "ArrowRight") {
+      event.preventDefault();
+      showPhoto(currentPhotoIndex + 1);
+    }
+  });
+
+  photoViewer.addEventListener("click", (event) => {
+    if (event.target === photoViewer) {
+      photoViewer.close();
+    }
+  });
+}
+
 updateAnniversary();
 window.setInterval(updateAnniversary, MINUTE_IN_MS);
 initStyleChoices();
+initPhotoViewer();

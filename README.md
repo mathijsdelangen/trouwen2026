@@ -6,6 +6,8 @@ Een statische herinneringspagina met de trouwfoto's, een plek voor de trouwfilm 
 
 - De trouwdatum en het moment waarop de teller begint staan bovenaan in `script.js` als `WEDDING_DATE`.
 - Voeg foto's toe aan `assets/fotos_moments/` en pas de galerij in `index.html` aan.
+- Klik op een galerijfoto om de volledige foto te bekijken; Escape, de sluitknop of naast de foto klikken sluit de viewer.
+- Blader in de viewer met de pijltjestoetsen of de knoppen op het beeld; na de laatste foto begint de galerij weer vooraan.
 - Vervang het filmvlak in `index.html` later door een video-element of een ingesloten video.
 - De fotograafvermelding en Instagram-link staan direct bij de fotogalerij.
 

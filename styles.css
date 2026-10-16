@@ -238,6 +238,7 @@ figure {
 }
 
 .hero__photo img {
+  height: auto;
   border-radius: 2px 90px 2px 2px;
   box-shadow: var(--shadow);
 }
@@ -373,6 +374,90 @@ figure {
 .gallery__item img {
   height: auto;
   object-fit: contain;
+}
+
+.gallery__link {
+  display: block;
+  cursor: zoom-in;
+}
+
+.photo-viewer {
+  width: fit-content;
+  max-width: 96vw;
+  max-height: 95vh;
+  margin: auto;
+  padding: 3.5rem 1rem 1rem;
+  overflow: auto;
+  border: 0;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.photo-viewer::backdrop {
+  background: rgba(17, 21, 18, 0.88);
+  backdrop-filter: blur(4px);
+}
+
+.photo-viewer__stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.photo-viewer__image {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(95vh - 5rem);
+  margin-inline: auto;
+  object-fit: contain;
+}
+
+.photo-viewer__close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.8rem;
+  padding: 0.45rem 0.85rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--surface-alt);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.photo-viewer__nav {
+  position: absolute;
+  top: 50%;
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  transform: translateY(-50%);
+  border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text);
+  font: 600 1.4rem/1 "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  cursor: pointer;
+}
+
+.photo-viewer__nav--previous {
+  left: 0.65rem;
+}
+
+.photo-viewer__nav--next {
+  right: 0.65rem;
+}
+
+.photo-viewer__nav:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.photo-viewer__close:hover {
+  background: var(--primary);
+  color: white;
 }
 
 :root[data-layout="raster"] .gallery {
