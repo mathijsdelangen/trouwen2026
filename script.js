@@ -48,6 +48,41 @@ function updateAnniversary() {
     elapsedMinutes === 1 ? "minuut" : "minuten";
 }
 
+function updateGalleryLayout() {
+    const gallery = document.querySelector(".gallery");
+    const galleryStyle = getComputedStyle(gallery);
+    const columnCount = galleryStyle.gridTemplateColumns.trim().split(/\s+/).length;
+    const columnGap = parseFloat(galleryStyle.columnGap);
+    const rowHeight = parseFloat(galleryStyle.gridAutoRows);
+    const rowGap = parseFloat(galleryStyle.rowGap);
+    const columnWidth =
+      (gallery.clientWidth - columnGap * (columnCount - 1)) / columnCount;
+
+    if (columnWidth <= 0) {
+      return;
+    }
+
+    gallery.querySelectorAll(".gallery__item").forEach((item) => {
+      const image = item.querySelector("img");
+      const imageWidth = Number(image.getAttribute("width"));
+      const imageHeight = Number(image.getAttribute("height"));
+
+      if (
+        !Number.isFinite(imageWidth) ||
+        !Number.isFinite(imageHeight) ||
+        imageWidth <= 0 ||
+        imageHeight <= 0
+      ) {
+        console.error(`Cannot lay out gallery image without dimensions: ${image.src}`);
+        return;
+      }
+
+      const renderedHeight = (columnWidth * imageHeight) / imageWidth;
+      const rowSpan = Math.ceil((renderedHeight + rowGap) / (rowHeight + rowGap));
+      item.style.gridRowEnd = `span ${rowSpan}`;
+    });
+}
+
 function initStyleChoices() {
   document.querySelectorAll("[data-theme-choice]").forEach((button) => {
     button.addEventListener("click", () => {
@@ -64,6 +99,7 @@ function initStyleChoices() {
       document.querySelectorAll("[data-layout-choice]").forEach((choice) => {
         choice.setAttribute("aria-pressed", String(choice === button));
       });
+      updateGalleryLayout();
     });
   });
 }
@@ -149,3 +185,5 @@ updateAnniversary();
 window.setInterval(updateAnniversary, MINUTE_IN_MS);
 initStyleChoices();
 initPhotoViewer();
+updateGalleryLayout();
+window.addEventListener("resize", updateGalleryLayout);

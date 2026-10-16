@@ -5,7 +5,7 @@ Een statische herinneringspagina met de trouwfoto's, een plek voor de trouwfilm 
 ## Inhoud aanpassen
 
 - De trouwdatum en het moment waarop de teller begint staan bovenaan in `script.js` als `WEDDING_DATE`.
-- Voeg foto's toe aan `assets/fotos_moments/` en pas de galerij in `index.html` aan.
+- Voeg foto's toe aan `assets/fotos_moments/` en pas de galerij in `index.html` aan; foto's staan op opnamedatum en vloeien speels van boven naar beneden.
 - Klik op een galerijfoto om de volledige foto te bekijken; Escape, de sluitknop of naast de foto klikken sluit de viewer.
 - Blader in de viewer met de pijltjestoetsen of de knoppen op het beeld; na de laatste foto begint de galerij weer vooraan.
 - Vervang het filmvlak in `index.html` later door een video-element of een ingesloten video.
@@ -18,7 +18,7 @@ Bezoekers kunnen de kleuren en foto-indeling op de pagina aanpassen:
 - Kleuren: eucalyptus, zand, rozenhout en avond.
 - Foto-indeling: mozaïek, raster en ruim.
 
-Elke indeling behoudt de originele beeldverhouding van de foto's, zodat personen en details niet worden afgesneden.
+De galerij behoudt de oorspronkelijke beeldverhoudingen en snijdt geen foto's af. De verspringende indeling volgt de chronologische volgorde zo veel mogelijk van boven naar beneden, zonder gekleurde fotovakken.
 
 De standaardkeuzes staan als `data-theme` en `data-layout` op het `<html>`-element in `index.html`. Alle beschikbare kleuren en indelingen zijn uitgewerkt in `styles.css`.
 
