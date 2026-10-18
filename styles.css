@@ -177,13 +177,6 @@ figure {
   letter-spacing: -0.055em;
 }
 
-.lead {
-  max-width: 34ch;
-  margin-bottom: 2rem;
-  color: var(--muted);
-  font: 1.18rem / 1.6 var(--serif);
-}
-
 .anniversary {
   border-top: 1px solid color-mix(in srgb, var(--muted) 30%, transparent);
   padding-top: 0.8rem;
@@ -241,13 +234,6 @@ figure {
   height: auto;
   border-radius: 2px 90px 2px 2px;
   box-shadow: var(--shadow);
-}
-
-.hero__photo figcaption {
-  margin-top: 0.6rem;
-  color: var(--muted);
-  font: italic 0.84rem var(--serif);
-  text-align: right;
 }
 
 .style-panel {
