@@ -13,14 +13,11 @@ Een statische herinneringspagina met de trouwfoto's, een plek voor de trouwfilm 
 
 ## Vormgeving
 
-Bezoekers kunnen de kleuren en foto-indeling op de pagina aanpassen:
-
-- Kleuren: eucalyptus, zand, rozenhout en avond.
-- Foto-indeling: mozaïek, raster en ruim.
+De website gebruikt het vaste kleurthema Zand en de foto-indeling Raster. Bezoekers kunnen deze keuzes niet aanpassen.
 
 De galerij behoudt de oorspronkelijke beeldverhoudingen en snijdt geen foto's af. De verspringende indeling volgt de chronologische volgorde zo veel mogelijk van boven naar beneden, zonder gekleurde fotovakken.
 
-De standaardkeuzes staan als `data-theme` en `data-layout` op het `<html>`-element in `index.html`. Alle beschikbare kleuren en indelingen zijn uitgewerkt in `styles.css`.
+De keuzes staan als `data-theme` en `data-layout` op het `<html>`-element in `index.html`.
 
 ## Publiceren
 

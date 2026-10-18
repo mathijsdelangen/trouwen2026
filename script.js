@@ -83,27 +83,6 @@ function updateGalleryLayout() {
     });
 }
 
-function initStyleChoices() {
-  document.querySelectorAll("[data-theme-choice]").forEach((button) => {
-    button.addEventListener("click", () => {
-      document.documentElement.dataset.theme = button.dataset.themeChoice;
-      document.querySelectorAll("[data-theme-choice]").forEach((choice) => {
-        choice.setAttribute("aria-pressed", String(choice === button));
-      });
-    });
-  });
-
-  document.querySelectorAll("[data-layout-choice]").forEach((button) => {
-    button.addEventListener("click", () => {
-      document.documentElement.dataset.layout = button.dataset.layoutChoice;
-      document.querySelectorAll("[data-layout-choice]").forEach((choice) => {
-        choice.setAttribute("aria-pressed", String(choice === button));
-      });
-      updateGalleryLayout();
-    });
-  });
-}
-
 function initPhotoViewer() {
   const gallery = document.querySelector(".gallery");
   const photoViewer = document.getElementById("photo-viewer");
@@ -183,7 +162,6 @@ function initPhotoViewer() {
 
 updateAnniversary();
 window.setInterval(updateAnniversary, MINUTE_IN_MS);
-initStyleChoices();
 initPhotoViewer();
 updateGalleryLayout();
 window.addEventListener("resize", updateGalleryLayout);

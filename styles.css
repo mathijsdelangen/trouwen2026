@@ -236,73 +236,6 @@ figure {
   box-shadow: var(--shadow);
 }
 
-.style-panel {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem 2rem;
-  padding: 1.1rem 1.3rem;
-  border: 1px solid color-mix(in srgb, var(--muted) 18%, transparent);
-  border-radius: 4px;
-  background: var(--surface);
-}
-
-.style-control {
-  min-width: 0;
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
-.style-control legend {
-  margin-bottom: 0.35rem;
-  color: var(--muted);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.style-options {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-}
-
-.style-choice {
-  padding: 0.34rem 0.65rem;
-  border: 1px solid transparent;
-  border-radius: 999px;
-  background: transparent;
-  color: var(--muted);
-  font: inherit;
-  font-size: 0.78rem;
-  cursor: pointer;
-}
-
-.style-choice:hover {
-  color: var(--text);
-  background: var(--surface-alt);
-}
-
-.style-choice[aria-pressed="true"] {
-  border-color: color-mix(in srgb, var(--primary) 42%, transparent);
-  background: var(--surface-alt);
-  color: var(--text);
-  font-weight: 700;
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  clip-path: inset(50%);
-}
-
 .section {
   padding: clamp(4rem, 8vw, 7rem) 0;
 }
@@ -560,9 +493,6 @@ figure {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .style-panel {
-    align-items: start;
-  }
 }
 
 @media (max-width: 520px) {
@@ -576,10 +506,6 @@ figure {
 
   .hero h1 {
     font-size: clamp(3.5rem, 16vw, 5.2rem);
-  }
-
-  .style-panel {
-    display: grid;
   }
 
   .section-heading {
