@@ -50,6 +50,9 @@ function updateAnniversary() {
 
 function updateGalleryLayout() {
     const gallery = document.querySelector(".gallery");
+    if (!gallery) {
+      return;
+    }
     const galleryStyle = getComputedStyle(gallery);
     const columnCount = galleryStyle.gridTemplateColumns.trim().split(/\s+/).length;
     const columnGap = parseFloat(galleryStyle.columnGap);
@@ -83,29 +86,65 @@ function updateGalleryLayout() {
     });
 }
 
-function initPhotoViewer() {
+function initPhotoViewer(loadFullSize) {
   const gallery = document.querySelector(".gallery");
   const photoViewer = document.getElementById("photo-viewer");
   const viewerImage = document.getElementById("photo-viewer-image");
+  const viewerStatus = document.getElementById("photo-viewer-status");
   const closeButton = document.getElementById("photo-viewer-close");
   const previousButton = document.getElementById("photo-viewer-previous");
   const nextButton = document.getElementById("photo-viewer-next");
   const photoLinks = Array.from(gallery.querySelectorAll(".gallery__link"));
   let currentPhotoIndex = 0;
+  let photoRequestVersion = 0;
 
-  function showPhoto(index) {
+  async function showPhoto(index) {
     currentPhotoIndex = (index + photoLinks.length) % photoLinks.length;
+    const requestedVersion = ++photoRequestVersion;
     const link = photoLinks[currentPhotoIndex];
     const image = link.querySelector("img");
+    let fullSizeReady = false;
 
     viewerImage.width = Number(image.getAttribute("width"));
     viewerImage.height = Number(image.getAttribute("height"));
-    viewerImage.src = link.href;
     viewerImage.alt = image.alt;
+    viewerImage.setAttribute("aria-busy", "true");
+    viewerStatus.textContent = "Foto laden...";
+    viewerStatus.dataset.loading = "true";
+    viewerStatus.hidden = false;
+    if (image.getAttribute("src")) {
+      viewerImage.src = image.src;
+    } else {
+      viewerImage.removeAttribute("src");
+      loadFullSize(image, "thumbnails").then((url) => {
+        if (photoRequestVersion === requestedVersion && !fullSizeReady) {
+          viewerImage.src = url;
+        }
+      }).catch(() => {});
+    }
     photoViewer.setAttribute(
       "aria-label",
       `Foto ${currentPhotoIndex + 1} van ${photoLinks.length}: ${image.alt}`
     );
+    try {
+      const displayUrl = await loadFullSize(image);
+      const fullSizeImage = new Image();
+      fullSizeImage.src = displayUrl;
+      await fullSizeImage.decode();
+      if (photoRequestVersion === requestedVersion) {
+        fullSizeReady = true;
+        viewerImage.src = displayUrl;
+        viewerImage.setAttribute("aria-busy", "false");
+        viewerStatus.dataset.loading = "false";
+        viewerStatus.hidden = true;
+      }
+    } catch {
+      if (photoRequestVersion === requestedVersion) {
+        viewerImage.setAttribute("aria-busy", "false");
+        viewerStatus.dataset.loading = "false";
+        viewerStatus.textContent = "De scherpe foto kon niet worden geladen.";
+      }
+    }
   }
 
   gallery.addEventListener("click", (event) => {
@@ -140,6 +179,12 @@ function initPhotoViewer() {
     photoViewer.close();
   });
 
+  photoViewer.addEventListener("close", () => {
+    photoRequestVersion++;
+    viewerImage.setAttribute("aria-busy", "false");
+    viewerStatus.hidden = true;
+  });
+
   photoViewer.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       event.preventDefault();
@@ -160,8 +205,103 @@ function initPhotoViewer() {
   });
 }
 
+function initGalleryAccess() {
+  const form = document.getElementById("gallery-access");
+  const passwordInput = document.getElementById("gallery-password");
+  const submitButton = form.querySelector("button");
+  const status = document.getElementById("gallery-status");
+  const template = document.getElementById("gallery-template");
+  const lockButton = document.getElementById("gallery-lock");
+
+  function photoVariantUrl(source, variant) {
+    const url = new URL(source, document.baseURI);
+    url.pathname = url.pathname.replace(/\/([^/]+)\.jpg$/i, `/${variant}/$1.webp`);
+    return url.href;
+  }
+
+  lockButton.addEventListener("click", () => window.location.reload());
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const passwordBytes = new TextEncoder().encode(`gasten:${passwordInput.value}`);
+    const authorization = `Basic ${btoa(String.fromCharCode(...passwordBytes))}`;
+    passwordInput.value = "";
+    submitButton.disabled = true;
+    status.textContent = "Foto's laden...";
+
+    async function fetchPhoto(url) {
+      const response = await fetch(url, {
+        headers: { Authorization: authorization },
+        credentials: "omit",
+        cache: "no-store"
+      });
+      if (response.status === 401) {
+        throw new Error("Het wachtwoord klopt niet.");
+      }
+      if (!response.ok || !response.headers.get("Content-Type")?.startsWith("image/")) {
+        throw new Error("De foto's zijn nu niet bereikbaar. Probeer het opnieuw.");
+      }
+      return response.blob();
+    }
+
+    try {
+      const firstLink = template.content.querySelector(".gallery__link");
+      const firstThumbnailUrl = photoVariantUrl(firstLink.getAttribute("href"), "thumbnails");
+      const firstPhoto = await fetchPhoto(firstThumbnailUrl);
+      const content = template.content.cloneNode(true);
+      const images = Array.from(content.querySelectorAll(".gallery img"));
+      const requests = new Map();
+      images.forEach((image) => {
+        image.removeAttribute("src");
+        image.loading = "eager";
+      });
+      images[0].src = URL.createObjectURL(firstPhoto);
+      requests.set(firstThumbnailUrl, Promise.resolve(images[0].src));
+
+      function loadPhoto(url) {
+        if (!requests.has(url)) {
+          const request = fetchPhoto(url).then((photo) => URL.createObjectURL(photo));
+          requests.set(url, request);
+          request.catch(() => requests.delete(url));
+        }
+        return requests.get(url);
+      }
+
+      function loadImage(image) {
+        return loadPhoto(photoVariantUrl(image.closest("a").href, "thumbnails")).then((url) => {
+          image.src = url;
+        });
+      }
+
+      document.getElementById("gallery-content").replaceChildren(content);
+      form.hidden = true;
+      lockButton.hidden = false;
+      document.getElementById("trouwfilm").hidden = false;
+      initPhotoViewer((image, variant = "display") => loadPhoto(photoVariantUrl(image.closest("a").href, variant)));
+      updateGalleryLayout();
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            observer.unobserve(entry.target);
+            loadImage(entry.target).catch(() => {
+              entry.target.alt = "Deze foto kon niet worden geladen.";
+            });
+          }
+        });
+      }, { rootMargin: "400px" });
+      images.forEach((image) => observer.observe(image));
+    } catch (error) {
+      status.textContent = error instanceof Error ? error.message : "Inloggen is niet gelukt.";
+      passwordInput.focus();
+    } finally {
+      submitButton.disabled = false;
+    }
+  });
+}
+
 updateAnniversary();
 window.setInterval(updateAnniversary, MINUTE_IN_MS);
-initPhotoViewer();
+initGalleryAccess();
 updateGalleryLayout();
 window.addEventListener("resize", updateGalleryLayout);

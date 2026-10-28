@@ -9,7 +9,7 @@
     />
     <meta name="theme-color" content="#f3f2ec" />
     <title>Mathijs &amp; Chantal</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=gallery-access-3" />
   </head>
   <body>
     <header class="hero" id="boven">
@@ -51,7 +51,7 @@
 
         <figure class="hero__photo">
           <img
-            src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0007.jpg"
+            src="assets/hero.jpg"
             alt="Mathijs en Chantal lopen lachend hand in hand na de ceremonie"
             width="7411"
             height="4941"
@@ -75,6 +75,16 @@
             </p>
           </div>
 
+          <form class="gallery-access" id="gallery-access" method="post" action="/assets/fotos_moments/">
+            <label for="gallery-password">Wachtwoord
+              <input id="gallery-password" name="password" type="password" autocomplete="current-password" required />
+            </label>
+            <button type="submit">Foto's bekijken</button>
+            <p id="gallery-status" role="status" aria-live="polite"></p>
+          </form>
+          <button class="gallery-lock" id="gallery-lock" type="button" hidden>Foto's sluiten</button>
+          <div id="gallery-content"></div>
+          <template id="gallery-template">
           <div class="gallery" aria-label="Foto's van onze trouwdag">
             <figure class="gallery__item"><a class="gallery__link" href="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0001.jpg" aria-haspopup="dialog"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0001.jpg" width="7952" height="5304" alt="Chantal wordt klaargemaakt voor de trouwdag" loading="lazy" decoding="async" /></a></figure>
             <figure class="gallery__item"><a class="gallery__link" href="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0022.jpg" aria-haspopup="dialog"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0022.jpg" width="1669" height="2504" alt="Mathijs maakt zich klaar voor de ceremonie" loading="lazy" decoding="async" /></a></figure>
@@ -98,6 +108,7 @@
             <figure class="gallery__item"><a class="gallery__link" href="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0020.jpg" aria-haspopup="dialog"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0020.jpg" width="5511" height="3676" alt="Mathijs en Chantal tijdens het diner" loading="lazy" decoding="async" /></a></figure>
             <figure class="gallery__item"><a class="gallery__link" href="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0021.jpg" aria-haspopup="dialog"><img src="assets/fotos_moments/MOMENTSToFocusOn-PREVIEW0021.jpg" width="2501" height="1667" alt="Chantal wordt opgetild tijdens het feest" loading="lazy" decoding="async" /></a></figure>
           </div>
+          </template>
         </div>
       </section>
 
@@ -106,11 +117,12 @@
         <div class="photo-viewer__stage">
           <button class="photo-viewer__nav photo-viewer__nav--previous" id="photo-viewer-previous" type="button" aria-label="Vorige foto" aria-controls="photo-viewer-image">&larr;</button>
           <img class="photo-viewer__image" id="photo-viewer-image" alt="" />
+          <div class="photo-viewer__status" id="photo-viewer-status" role="status" aria-live="polite" hidden></div>
           <button class="photo-viewer__nav photo-viewer__nav--next" id="photo-viewer-next" type="button" aria-label="Volgende foto" aria-controls="photo-viewer-image">&rarr;</button>
         </div>
       </dialog>
 
-      <section class="section film-section" id="trouwfilm">
+      <section class="section film-section" id="trouwfilm" hidden>
         <div class="container">
           <div class="section-heading section-heading--center">
             <div>
@@ -133,6 +145,6 @@
       </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=gallery-access-6"></script>
   </body>
 </html>
