@@ -8,7 +8,8 @@ Een statische herinneringspagina met de trouwfoto's, een plek voor de trouwfilm 
 - Voeg foto's toe aan `assets/fotos_moments/` en pas de galerij in `index.html` aan; foto's staan op opnamedatum en vloeien speels van boven naar beneden.
 - Klik op een galerijfoto om de volledige foto te bekijken; Escape, de sluitknop of naast de foto klikken sluit de viewer.
 - Blader in de viewer met de pijltjestoetsen of de knoppen op het beeld; na de laatste foto begint de galerij weer vooraan.
-- Vervang het filmvlak in `index.html` later door een video-element of een ingesloten video.
+- De feestvideo staat lokaal in `assets/feest_video.mp4` en wordt na het inloggen bij de foto's geladen met hetzelfde wachtwoord. De speler verschijnt direct, maar speelt pas af als de bezoeker op de afspeelknop drukt.
+- De gastvideo wordt niet in de publieke GitHub-repository opgenomen. Upload hem bij het deployen rechtstreeks naar de server.
 - De fotograafvermelding en Instagram-link staan direct bij de fotogalerij.
 
 ## Vormgeving
@@ -113,5 +114,20 @@ curl.exe --silent --show-error --output NUL --write-out '%{http_code}' https://t
 De homepage moet bereikbaar zijn; de tweede opdracht moet zonder login `401` teruggeven. Test daarnaast in de browser het inloggen, openen en bladeren van foto's en opnieuw afsluiten van de galerij. Bij problemen kun je de logs volgen met `ssh dokku@95.216.174.120 logs trouwen --tail`.
 
 De fotobeveiliging zit in de nginx-configuratie op de host, niet in de Docker-image. De configuratie uit `deploy/nginx-auth.conf` staat op de server als `/home/dokku/trouwen/nginx.conf.d/auth.conf`. Het wachtwoordbestand staat uitsluitend op de server in `/etc/nginx/auth/trouwen.htpasswd`; neem het wachtwoord of dit bestand nooit op in Git of een Docker-image. TLS-certificaten worden ook op de server beheerd. Deze bestaande hostinstellingen blijven bij een normale app-deploy behouden, maar moeten bij een nieuwe server apart worden ingericht.
+
+Installeer bij de eerste publicatie van de feestvideo ook de bijgewerkte beveiligingsconfiguratie, voordat je de video uploadt:
+
+```powershell
+scp deploy/nginx-auth.conf root@95.216.174.120:/home/dokku/trouwen/nginx.conf.d/auth.conf
+ssh root@95.216.174.120 'nginx -t && systemctl reload nginx'
+```
+
+Upload daarna de video naar de bestaande buildmap en voer de image-deploy uit:
+
+```powershell
+scp assets/feest_video.mp4 root@95.216.174.120:/var/tmp/trouwen-deploy/assets/
+```
+
+Controleer na de deploy dat `https://trouwen.server.mathijsenchantal.nl/assets/feest_video.mp4` zonder login `401` teruggeeft. Alleen het verbergen van de videospeler is geen toegangsbeveiliging.
 
 Een publieke GitHub-repository of een oude GitHub Pages-publicatie valt niet onder deze wachtwoordbeveiliging. Publiceer de privefoto's daar niet als ze uitsluitend via de beveiligde site toegankelijk mogen zijn.

@@ -523,43 +523,14 @@ figure {
   text-align: center;
 }
 
-.film-placeholder {
-  display: grid;
-  min-height: 240px;
-  aspect-ratio: 16 / 7;
-  place-content: center;
-  justify-items: center;
-  gap: 1rem;
-  overflow: hidden;
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--text) 94%, transparent), color-mix(in srgb, var(--text) 76%, var(--primary))),
-    var(--text);
-  color: var(--bg);
+.film {
   text-align: center;
 }
 
-.film-placeholder__play {
-  display: grid;
-  width: 54px;
-  height: 54px;
-  place-items: center;
-  border: 1px solid color-mix(in srgb, var(--bg) 70%, transparent);
-  border-radius: 50%;
-}
-
-.film-placeholder__play::after {
-  width: 0;
-  height: 0;
-  margin-left: 4px;
-  border-top: 7px solid transparent;
-  border-bottom: 7px solid transparent;
-  border-left: 10px solid var(--bg);
-  content: "";
-}
-
-.film-placeholder p {
-  margin: 0;
-  font: italic clamp(1rem, 2.5vw, 1.35rem) var(--serif);
+.film__video {
+  width: 100%;
+  max-height: 80vh;
+  background: #000;
 }
 
 .footer {
@@ -625,11 +596,6 @@ figure {
 
   :root[data-layout="ruim"] .gallery {
     grid-template-columns: 1fr;
-  }
-
-  .film-placeholder {
-    min-height: 230px;
-    aspect-ratio: 4 / 3;
   }
 
   .footer__inner {

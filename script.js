@@ -277,6 +277,32 @@ function initGalleryAccess() {
       form.hidden = true;
       lockButton.hidden = false;
       document.getElementById("trouwfilm").hidden = false;
+      const filmStatus = document.getElementById("film-status");
+      const filmVideo = document.getElementById("feest-video");
+
+      async function loadFilm() {
+        filmVideo.setAttribute("aria-busy", "true");
+        filmStatus.textContent = "Video laden...";
+        filmStatus.hidden = false;
+        try {
+          const response = await fetch("assets/feest_video.mp4", {
+            headers: { Authorization: authorization },
+            credentials: "omit",
+            cache: "no-store"
+          });
+          if (!response.ok || !response.headers.get("Content-Type")?.startsWith("video/")) {
+            throw new Error("De video kon niet worden geladen. Vernieuw de pagina om het opnieuw te proberen.");
+          }
+          filmVideo.src = URL.createObjectURL(await response.blob());
+          filmStatus.hidden = true;
+        } catch (error) {
+          filmStatus.textContent = error instanceof Error ? error.message : "De video kon niet worden geladen.";
+        } finally {
+          filmVideo.setAttribute("aria-busy", "false");
+        }
+      }
+
+      loadFilm();
       initPhotoViewer((image, variant = "display") => loadPhoto(photoVariantUrl(image.closest("a").href, variant)));
       updateGalleryLayout();
 
